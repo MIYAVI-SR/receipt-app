@@ -1,7 +1,7 @@
 // レシート読み込み家計簿アプリ バックエンドサーバー
 import express from 'express';
 import cors from 'cors';
-import multer from 'multer';
+import multer, { memoryStorage } from 'multer';
 import Anthropic from '@anthropic-ai/sdk';
 import dotenv from 'dotenv';
 
@@ -16,7 +16,7 @@ const client = new Anthropic({
 });
 
 // メモリストレージ（ファイルをディスクに保存しない）
-const upload = multer({ storage: multer.memoryStorage() });
+const upload = multer({ storage: memoryStorage() });
 
 app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(express.json());
